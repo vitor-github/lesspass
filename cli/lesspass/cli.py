@@ -72,7 +72,14 @@ def parse_args(args):
         "--prompt",
         dest="prompt",
         action="store_true",
-        help="prompt for values interactively",
+        help="prompt for site and login values interactively",
+    )
+    parser.add_argument(
+        "-a",
+        "--prompt-all",
+        dest="prompt_all",
+        action="store_true",
+        help="prompt for all values interactively",
     )
     parser.add_argument(
         "-c",

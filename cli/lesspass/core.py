@@ -22,7 +22,34 @@ def main(args=sys.argv[1:]):
         )
         sys.exit(3)
 
-    if args.prompt:
+    if args.prompt_all:
+        args.site = getpass.getpass("Site: ")
+        args.login = getpass.getpass("Login: ")
+        
+        counter = getpass.getpass("Counter: ")
+        if counter.isdigit():
+            args.counter = int(counter)
+        else:
+            print("ERROR argument COUNTER must be an integer.")
+            sys.exit(4)
+            
+        length = getpass.getpass("Length [5-35]: ")
+        try:
+            length = int(length)
+            if length >= 5 and length <= 35:
+                args.length = length
+            else:
+                raise
+        except:
+            print("ERROR argument LENGTH must be an integer in range [5-35].")
+            sys.exit(4)
+            
+        args.nl = True if getpass.getpass("Lowercase (Y/n): ") == 'n' else False
+        args.nu = True if getpass.getpass("Uppercase (Y/n): ") == 'n' else False
+        args.nd = True if getpass.getpass("Digits (Y/n): ") == 'n' else False
+        args.ns = True if getpass.getpass("Symbols (Y/n): ") == 'n' else False
+        
+    elif args.prompt:
         args.site = getpass.getpass("Site: ")
         args.login = getpass.getpass("Login: ")
     if not args.site:
